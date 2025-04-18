@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roblox Game Joiner</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <!-- Header -->
+  <div id="header">
+    <img id="extensionLogo" src="Images/roblox_navigator.png" alt="Roblox Navigator">
+    <div id="userProfile">
+      <div id="avatarContainer">
+        <img id="userAvatar" src="" alt="Avatar">
+      </div>
+      <div id="userInfo">
+        <p id="username">Loading...</p>
+        <p id="followerCount">Loading...</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Navigation -->
+  <div class="tabs-container">
+    <div id="tabs">
+      <div class="tab active" id="serversTab">Servers</div>
+      <div class="tab" id="friendsTab">Friends</div>
+      <div class="tab" id="settingsTab">Settings</div>
+    </div>
+    <div class="action-buttons">
+      <button class="action-btn random-join-btn" id="randomJoinBtn" title="Join a random server">
+        <i class="fas fa-random"></i>
+      </button>
+      <button class="action-btn" id="refreshBtn" title="Refresh servers">
+        <i class="fas fa-sync-alt"></i>
+      </button>
+      <div class="dropdown">
+        <button class="action-btn" id="serverFilterBtn" title="Filter servers">
+          <i class="fas fa-filter"></i>
+        </button>
+        <div id="serverFilterDropdown"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error message -->
+  <div id="errorMessage"></div>
+  
+  <!-- Servers content -->
+  <div id="serversContent">
+    <div id="serverList"></div>
+    
+    <!-- Empty state -->
+    <div id="emptyState">
+      <i class="fas fa-server empty-icon"></i>
+      <p id="emptyStateMessage">No servers found</p>
+    </div>
+    
+    <!-- Pagination -->
+    <div class="pagination">
+      <button id="prevPage" disabled>
+        <i class="fas fa-chevron-left"></i> Previous
+      </button>
+      <div class="page-info">Page <span id="currentPage">1</span></div>
+      <button id="nextPage">
+        Next <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Friends content -->
+  <div id="friendsContent">
+    <div class="friends-header">
+      <h3>Friends Playing This Game</h3>
+      <button id="refreshFriendsBtn" class="refresh-btn" title="Refresh friends list">
+        <i class="fas fa-sync-alt"></i>
+      </button>
+    </div>
+    
+    <div id="friendsList"></div>
+    
+    <!-- Empty state for friends -->
+    <div id="emptyFriendsState" class="hidden">
+      <i class="fas fa-user-friends empty-icon"></i>
+      <p id="emptyFriendsMessage">No friends currently playing this game</p>
+    </div>
+  </div>
+
+  <!-- Settings content -->
+  <div id="settingsContent">
+    <form id="settingsForm">
+      <div class="settings-title">Display Settings</div>
+      
+      <div class="setting-item">
+        <label>
+          <div class="setting-icon"><i class="fas fa-hashtag"></i></div>
+          <div class="setting-label">Show Server ID</div>
+          <div class="toggle-switch">
+            <input type="checkbox" name="showServerId" checked>
+            <span class="toggle-slider"></span>
+          </div>
+        </label>
+      </div>
+      
+      <div class="setting-item">
+        <label>
+          <div class="setting-icon"><i class="fas fa-users"></i></div>
+          <div class="setting-label">Show Players</div>
+          <div class="toggle-switch">
+            <input type="checkbox" name="showPlayers" checked>
+            <span class="toggle-slider"></span>
+          </div>
+        </label>
+      </div>
+      
+      <div class="setting-item">
+        <label>
+          <div class="setting-icon"><i class="fas fa-tachometer-alt"></i></div>
+          <div class="setting-label">Show FPS</div>
+          <div class="toggle-switch">
+            <input type="checkbox" name="showFPS" checked>
+            <span class="toggle-slider"></span>
+          </div>
+        </label>
+      </div>
+      
+      <div class="setting-item">
+        <label>
+          <div class="setting-icon"><i class="fas fa-broadcast-tower"></i></div>
+          <div class="setting-label">Show Ping</div>
+          <div class="toggle-switch">
+            <input type="checkbox" name="showPing" checked>
+            <span class="toggle-slider"></span>
+          </div>
+        </label>
+      </div>
+      
+      <div class="setting-item">
+        <label>
+          <div class="setting-icon"><i class="fas fa-network-wired"></i></div>
+          <div class="setting-label">Show IP</div>
+          <div class="toggle-switch">
+            <input type="checkbox" name="showIP" checked>
+            <span class="toggle-slider"></span>
+          </div>
+        </label>
+      </div>
+      
+      <div class="setting-item">
+        <label>
+          <div class="setting-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="setting-label">Show Location</div>
+          <div class="toggle-switch">
+            <input type="checkbox" name="showLocation" checked>
+            <span class="toggle-slider"></span>
+          </div>
+        </label>
+      </div>
+
+      <div class="setting-item">
+        <label>
+          <div class="setting-icon"><i class="fas fa-sort-amount-down"></i></div>
+          <div class="setting-label">Join Low Population Servers</div>
+          <div class="toggle-switch">
+            <input type="checkbox" name="joinLowServers">
+            <span class="toggle-slider"></span>
+          </div>
+        </label>
+      </div>
+    </form>
+  </div>
+  
+  <!-- Loading indicator -->
+  <div id="loader">
+    <div class="spinner"></div>
+    <p id="loaderText">Loading...</p>
+  </div>
+  
+  <!-- Toast notification -->
+  <div id="toast">
+    <div class="toast-icon"><i class="fas fa-info-circle"></i></div>
+    <div class="toast-content">
+      <span id="toastMessage"></span>
+    </div>
+    <button class="toast-close"><i class="fas fa-times"></i></button>
+  </div>
+
+  <!-- Recently joined servers table -->
+  <div id="recentlyJoinedServers" class="hidden">
+    <div class="recently-joined-header">
+      <h3>Recently Joined Servers</h3>
+      <button id="closeRecentServers"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="recently-joined-list">
+      <table id="recentServersTable">
+        <thead>
+          <tr>
+            <th>Server ID</th>
+            <th>Time Joined</th>
+            <th>Expiry</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Will be populated dynamically -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

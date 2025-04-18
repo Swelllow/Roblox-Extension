@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "Roblox Navigator",
+  "version": "1.0",
+  "permissions": [
+    "tabs",
+    "activeTab", 
+    "scripting", 
+    "storage", 
+    "commands", 
+    "cookies",
+    "declarativeNetRequest",
+    "declarativeNetRequestFeedback",
+    "declarativeNetRequestWithHostAccess"
+  ],
+  "host_permissions": ["*://*.roblox.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.roblox.com/games/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["ServerList.json"],
+      "matches": ["*://*.roblox.com/*"]
+    }
+  ],
+  "icons": {
+    "16": "Images/icon16.png",
+    "48": "Images/icon48.png",
+    "128": "Images/icon128.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}

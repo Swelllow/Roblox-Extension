@@ -588,12 +588,17 @@ const joinRandomServer = async () => {
     let eligibleServers = [];
     let currentTime = Date.now();
     let attemptsRemaining = 5; // Maximum pages to check
+    let currentPageNumber = 1;
+    
+    // Determine target page for low population servers
+    // For random servers, we'll still use any page
+    let targetPage = displaySettings.joinLowServers ? 3 : 1;
     
     // Always use Asc for sorting by player count (lowest first)
     const sortOrder = 'Asc';
     
-    while (eligibleServers.length === 0 && attemptsRemaining > 0) {
-      showLoading(true, `Finding servers (${6-attemptsRemaining}/5)...`);
+    while (attemptsRemaining > 0) {
+      showLoading(true, `Finding servers (page ${currentPageNumber}/5)...`);
       
       const apiUrl = `https://games.roblox.com/v1/games/${placeId}/servers/Public?excludeFullGames=true&limit=${state.serversPerPage}&sortOrder=${sortOrder}&cursor=${tempCursor || ''}`;
       
@@ -621,29 +626,47 @@ const joinRandomServer = async () => {
       tempCursor = serverData.nextPageCursor;
       
       if (servers.length === 0 || !tempCursor) {
+        // If we can't go to the target page, use what we've got
+        if (displaySettings.joinLowServers && eligibleServers.length > 0) {
+          break;
+        }
         attemptsRemaining = 0;
         continue;
       }
       
       // Filter out recently joined servers
+      const pageServers = [];
       for (const server of servers) {
         const serverId = server.id;
         const recentJoin = cache.recentlyJoinedServers[serverId];
         
         if (!recentJoin || (currentTime - recentJoin.timestamp > 10 * 60 * 1000)) {
-          eligibleServers.push({
+          pageServers.push({
             ...server,
             placeId
           });
         }
       }
       
-      // For low population servers, can stop after finding eligible servers
-      if (displaySettings.joinLowServers && eligibleServers.length > 0) {
-        break;
+      // For low population servers, we want to go to target page before selecting
+      if (displaySettings.joinLowServers) {
+        // If we've reached our target page, use these servers
+        if (currentPageNumber >= targetPage || !tempCursor) {
+          eligibleServers = pageServers;
+          break;
+        }
+      } else {
+        // For random servers, collect from all pages
+        eligibleServers = [...eligibleServers, ...pageServers];
       }
       
+      currentPageNumber++;
       attemptsRemaining--;
+      
+      // If we don't have a next cursor, we can't go further
+      if (!tempCursor) {
+        break;
+      }
     }
     
     if (eligibleServers.length === 0) {
@@ -655,9 +678,10 @@ const joinRandomServer = async () => {
     let selectedServer;
     
     if (displaySettings.joinLowServers) {
-      // Select server with lowest player count
+      // Select server with lowest player count from target page
+      eligibleServers.sort((a, b) => a.playing - b.playing);
       selectedServer = eligibleServers[0];
-      showToast('Joining lowest population server...');
+      showToast(`Joining low population server from page ${currentPageNumber}...`);
     } else {
       // Select random server
       const randomIndex = Math.floor(Math.random() * eligibleServers.length);

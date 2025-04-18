@@ -1,6 +1,6 @@
 # Roblox Navigator
 
-![Roblox Navigator Logo](images/icon128.png)
+![Roblox Navigator Logo](images/icon48.png)
 
 ## Overview
 

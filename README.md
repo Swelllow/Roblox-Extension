@@ -74,11 +74,3 @@ Contributions are welcome! If you'd like to improve Roblox Navigator:
 2. Create a new branch for your feature
 3. Add your changes
 4. Submit a pull request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Disclaimer
-
-This extension is not affiliated with, endorsed by, or connected to Roblox Corporation. It is an independent, fan-created tool designed to enhance the Roblox experience.

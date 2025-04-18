@@ -34,9 +34,7 @@ Roblox Navigator is a powerful Chrome extension that enhances your Roblox gaming
 ## Installation
 
 ### From Chrome Web Store
-1. Visit the [Chrome Web Store](https://chrome.google.com/webstore) (link to be added)
-2. Click "Add to Chrome"
-3. Confirm the installation
+Not Avaliable!
 
 ### Manual Installation (Developer Mode)
 1. Download or clone this repository

@@ -7,7 +7,7 @@
     "activeTab", 
     "scripting", 
     "storage", 
-    "commands", 
+    "webNavigation",
     "cookies",
     "declarativeNetRequest",
     "declarativeNetRequestFeedback",

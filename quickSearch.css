@@ -1,0 +1,188 @@
+.quick-game-search {
+  display: flex !important;
+  align-items: center;
+  border-radius: 0px !important;
+  padding: 8px 14px !important;
+  margin: 0px 0;
+  background: transparent;
+  min-height: 56px;
+}
+.quick-game-search:hover {
+  background: #2b3138 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+.quick-play-btn {
+  margin-left: auto;
+  height: 28px;
+  width: 70px;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px rgba(0,162,255,0.10);
+  transition: background .13s, transform .13s;
+  background: #0083cc;
+}
+.quick-play-btn:hover {
+  background: #005fa3 !important;
+  transform: scale(1.05);
+}
+
+
+
+.quick-user-search {
+  display: flex !important;
+  align-items: center;
+  border-radius: 0px !important;
+  padding: 8px 14px !important;
+  margin: 0px 0;
+  background: transparent;
+  min-height: 56px;
+}
+.quick-user-search:hover {
+  background: #2b3138 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+
+
+.quick-user-avatar {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 100px;
+  overflow: hidden;
+  background: #23272a;
+  margin-right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2.5px solid #444; /* fallback for offline */
+  transition: border-color 0.2s;
+}
+
+.quick-user-avatar.online {
+  border-color: #00a2ff !important; /* Bright blue */
+}
+
+.quick-user-avatar.ingame {
+  border-color: #12ff4e !important; /* Bright green */
+}
+
+.quick-user-avatar.instudio {
+  border-color: #ffa500 !important; /* Orange */
+}
+
+.quick-user-avatar.offline {
+  border-color: #666 !important; /* Grey */
+}
+
+.quick-join-user-btn {
+  margin-left: auto;
+  height: 28px;
+  width: 70px;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px rgba(0,162,255,0.10);
+  transition: background .13s, transform .13s;
+  background: #0083cc;
+}
+.quick-join-user-btn:hover {
+  background: #005fa3 !important;
+  transform: scale(1.05);
+}
+
+
+ul.dropdown-menu.new-dropdown-menu {
+  background: #202227 !important;      /* Updated background */
+  border-radius: 10px !important;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+  padding: 8px 0;
+  min-width: 340px;
+  border: none;
+  top: 45px !important;                 /* Shift down */
+  /* If 'top' doesn’t work due to position/context, use margin-top: 5px !important; */
+}
+
+/* Slightly modernize each item, matching color */
+.quick-user-search,
+.quick-game-search,
+.navbar-search-option.rbx-clickable-li {
+  border-radius: 8px !important;
+  margin: 4px 8px !important;
+  background: transparent !important;
+  min-height: 56px;
+  transition: background 0.14s, box-shadow 0.12s;
+}
+
+/* Hover is a little lighter than #202227 */
+.quick-user-search:hover,
+.quick-game-search:hover,
+.navbar-search-option.rbx-clickable-li:hover {
+  background: #23252c !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+
+/* Avatar tweaks */
+.quick-user-avatar {
+  width: 42px;
+  height: 42px;
+  margin-right: 15px;
+  border-radius: 50%;
+  border-width: 2.5px;
+}
+
+/* Typography tweaks */
+.quick-user-search div[style*="flex:1 1 0"] > div:first-child,
+.quick-game-search div[style*="flex:1 1 0"] > div:first-child {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: #fff !important;
+  letter-spacing: -0.01em;
+}
+.quick-user-search div[style*="flex:1 1 0"] > div:nth-child(2),
+.quick-game-search div[style*="flex:1 1 0"] > div:nth-child(2) {
+  font-size: 13px !important;
+  color: #a9b8cc !important;
+  margin-top: 3px !important;
+  font-weight: 400;
+}
+
+/* Button style remains the same */
+.quick-play-btn, .quick-join-user-btn {
+  background: #00a2ff;
+  box-shadow: 0 2px 8px rgba(0,162,255,0.13);
+  border-radius: 8px;
+  transition: background 0.16s, transform 0.12s;
+}
+.quick-play-btn:hover, .quick-join-user-btn:hover {
+  background: #0083cc !important;
+  transform: scale(1.08);
+}
+
+/* Search option text spacing */
+.navbar-list-option-text {
+  font-size: 15px;
+  font-weight: 500;
+}
+.navbar-list-option-suffix {
+  font-size: 13px;
+  color: #7a889b !important;
+  margin-left: 6px;
+}
+
+

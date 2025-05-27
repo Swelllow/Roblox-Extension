@@ -13,7 +13,12 @@
     "declarativeNetRequestFeedback",
     "declarativeNetRequestWithHostAccess"
   ],
-  "host_permissions": ["*://*.roblox.com/*"],
+  "host_permissions": [
+  "*://*.roblox.com/*",
+  "https://users.roblox.com/*",
+  "https://friends.roblox.com/*",
+  "https://presence.roblox.com/*"
+  ],
   "background": {
     "service_worker": "background.js"
   },
@@ -22,13 +27,19 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://*.roblox.com/games/*"],
+      "matches": ["*://*.roblox.com/*"],
       "js": ["content.js"]
+    },
+    {
+      "matches": ["*://*.roblox.com/*"],
+      "js": ["quickSearch.js"],
+      "css": ["quickSearch.css"],
+      "run_at": "document_end"
     }
   ],
   "web_accessible_resources": [
     {
-      "resources": ["ServerList.json"],
+      "resources": ["ServerList.json", "images/*"],
       "matches": ["*://*.roblox.com/*"]
     }
   ],

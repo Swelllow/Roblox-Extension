@@ -1,0 +1,153 @@
+.badge-list-modern {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 8px;
+  margin-bottom: 20px;
+}
+
+.badge-modern {
+  display: flex;
+  align-items: center;
+  background: #23272b;
+  border-radius: 13px;
+  padding: 16px 22px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.13);
+  border: 1.5px solid #2b3138;
+  transition: box-shadow 0.18s;
+}
+
+.badge-modern.owned {
+  border-left: 5px solid #12ff4e;
+}
+
+.badge-modern.locked {
+  opacity: 0.75;
+  filter: grayscale(0.30);
+  border-left: 5px solid #4a5056;
+}
+
+.badge-modern:hover {
+  box-shadow: 0 4px 16px rgba(0,162,255,0.18);
+}
+
+.badge-modern .badge-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  margin-right: 18px;
+  overflow: hidden;
+  background: #23272a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge-modern .badge-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.badge-modern .badge-name {
+  font-size: 19px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.badge-modern .badge-desc {
+  font-size: 13px;
+  color: #a9b8cc;
+  margin-bottom: 10px;
+}
+
+.badge-modern .badge-stats {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  color: #00a2ff;
+}
+
+.badge-modern .badge-stat-label {
+  color: #a9b8cc;
+  font-weight: 400;
+  margin-right: 3px;
+}
+
+.badge-modern .badge-owned-label {
+  color: #12ff4e;
+  font-size: 12.5px;
+  font-weight: 700;
+  margin-left: 10px;
+  letter-spacing: 0.01em;
+}
+
+.badge-modern-spinner {
+	margin: 34px auto 0 auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 48px;
+}
+.badge-modern-spinner-inner {
+	width: 40px;
+	height: 40px;
+	border: 5px solid #263246;
+	border-top: 5px solid #00b8ff;
+	border-radius: 50%;
+	animation: badge-modern-spin 1s linear infinite;
+	box-shadow: 0 3px 15px rgba(0,162,255,0.10);
+}
+@keyframes badge-modern-spin {
+	0% { transform: rotate(0deg);}
+	100% { transform: rotate(360deg);}
+}
+
+
+.badge-modern-see-more {
+	margin: 14px 0 0 0;
+	padding: 9px 0 9px 0;
+	background: #23272b;
+	color: #00b8ff;
+	font-weight: 600;
+	font-size: 15px;
+	border-radius: 10px;
+	border: 1.5px solid #2b3138;
+	box-shadow: 0 2px 12px rgba(0,0,0,0.13);
+	transition: background 0.18s, color 0.13s, transform 0.13s;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 9px;
+	width: 100%;
+	cursor: pointer;
+	letter-spacing: 0.01em;
+	position: relative;
+	overflow: hidden;
+}
+.badge-modern-see-more::before {
+	content: "";
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 5px;
+	background: #00b8ff;
+	border-radius: 10px 0 0 10px;
+}
+.badge-modern-see-more:disabled {
+	opacity: 0.65;
+	cursor: wait;
+}
+.badge-modern-see-more:hover:not(:disabled) {
+	background: #28394a;
+	color: #21d3ff;
+	transform: scale(1.03);
+}
+
+
+
+

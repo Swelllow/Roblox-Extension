@@ -35,6 +35,11 @@
       "js": ["quickSearch.js"],
       "css": ["quickSearch.css"],
       "run_at": "document_end"
+    },
+    {
+      "matches": ["*://*.roblox.com/*"],
+      "js": ["badgeHandler.js"],
+      "css": ["badge.css"]
     }
   ],
   "web_accessible_resources": [
